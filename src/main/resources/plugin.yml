@@ -1,0 +1,25 @@
+name: GUIShop
+main: us.alreadycoded.shop.Shop
+version: 2.2
+author: _Waffles_, AlreadyCoded
+depend: [Vault]
+permissions:
+    shop.buy:
+        description: Gives access to buying menu.
+    shop.sell:
+        description: Gives access to selling menu.
+    shop.enchantments:
+        description: Gives access the enchantment menu.
+    shop.tab.<tabID>:
+        description: Gives access the specified tab.
+    shop.creative:
+        description: Gives access shopping in creative mode.
+    shop.admin:
+        description: Gives access admin commands like /reloadshop.
+commands:
+    shop:
+        description: Opens the shop window.
+        aliases: [guishop]
+        usage: /<command>
+    reloadshop:
+        description: Reload shop configuration & prices.
