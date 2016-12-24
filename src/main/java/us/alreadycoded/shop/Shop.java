@@ -1,8 +1,7 @@
 package us.alreadycoded.shop;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
@@ -33,20 +32,21 @@ public class Shop
   
   public void onDisable()
   {
-    Collection<? extends Player> arrayOfPlayer = getServer().getOnlinePlayers();
-    int j = arrayOfPlayer.size(); 
-    Player[] players = null;
-    for(Player p : arrayOfPlayer){
-    	players = (Player[]) appendValue(players, p);
+    List<Player> listOfPlayer = new ArrayList<Player>();
+    for(Player p : getServer().getOnlinePlayers()){
+    	listOfPlayer.add(p);
     }
-    for (int i = 0; i < j; i++) 
-    { 
-      Player p = players[i];
-      
-      if (p.getOpenInventory().getTitle().contains(Settings.menuPrefix)) {
-        p.closeInventory();
-      }
-    }
+    if(listOfPlayer!=null){
+    	int j = listOfPlayer.size(); 
+        for (int i = 0; i < j; i++) 
+        { 
+          Player p = listOfPlayer.get(i);
+          
+          if (p.getOpenInventory().getTitle().contains(Settings.menuPrefix)) {
+            p.closeInventory();
+          }
+        }
+    }  
   }
   
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
@@ -104,11 +104,4 @@ public class Shop
     getServer().getPluginManager().registerEvents(listener, this);
   }
   
-  private Object[] appendValue(Object[] obj, Object newObj) {
-
-		ArrayList<Object> temp = new ArrayList<Object>(Arrays.asList(obj));
-		temp.add(newObj);
-		return temp.toArray();
-
-  }
 }
